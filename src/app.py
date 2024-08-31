@@ -5,7 +5,6 @@ app = FastAPI()
 
 app.include_router(llm_response.router)
 
-
 @app.get("/")
 def hello():
     return "Hello World!"
