@@ -1,3 +1,5 @@
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 
-config = load_dotenv()
+load_dotenv()
+
+config = dotenv_values(".env")
