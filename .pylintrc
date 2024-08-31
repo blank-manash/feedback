@@ -1,0 +1,100 @@
+[MASTER]
+# Specify a configuration file.
+rcfile=
+
+# Add files or directories matching the regex patterns to the blacklist.
+ignore=CVS
+
+# Add files or directories matching the regex patterns to the whitelist.
+ignore-patterns=
+
+# Python code to execute, usually for sys.path manipulation such as
+# pygtk.require().
+init-hook=
+
+# A comma-separated list of package or module names from where C extensions may
+# be loaded. Extensions are loading into the active Python interpreter and may
+# run arbitrary code.
+extension-pkg-whitelist=
+
+# A comma-separated list of files or directories to be added to the black list.
+ignore-patterns=tests
+
+# Pickle collected data for later comparisons.
+persistent=yes
+
+# Use multiple processes to speed up Pylint.
+jobs=1
+
+[MESSAGES CONTROL]
+# Only show the most important errors and warnings
+disable=all
+enable=F,E,W,C,R
+
+[REPORTS]
+# Disable the report by setting it to no
+reports=no
+
+[FORMAT]
+# Maximum number of characters on a single line.
+max-line-length=100
+
+# String used as indentation unit. This is usually " " (4 spaces) or "\t" (1 tab).
+indent-string='    '
+
+# Allow the use of "else" and "elif" in ternary operators
+allow-else-if-in-ternary=no
+
+[LOGGING]
+# Format style used to check for format string issues
+logging-format-style=old
+
+# Regular expression which should only match function or method names used as loggers.
+logging-modules=logging
+
+[BASIC]
+# Naming style matching correct argument names.
+argument-naming-style=snake_case
+
+# Naming style matching correct variable names.
+variable-naming-style=snake_case
+
+# Naming style matching correct constant names.
+const-naming-style=UPPER_CASE
+
+# Naming style matching correct class names.
+class-naming-style=PascalCase
+
+[DESIGN]
+# Minimum number of public methods for a class (see R0903).
+min-public-methods=0
+
+# Maximum number of public methods for a class (see R0904).
+max-public-methods=20
+
+[TYPECHECK]
+# Tells whether missing members accessed in mixin class should be ignored. A mixin is a
+# class that is meant to be inherited from, but not instantiated directly.
+ignore-mixin-members=yes
+
+# List of decorators that produce context managers, such as contextlib.contextmanager.
+contextmanager-decorators=contextlib.contextmanager
+
+[IMPORTS]
+# Deprecated modules which should not be used, separated by a comma.
+deprecated-modules=optparse,imp
+
+# Modules that are allowed to have cyclic imports.
+known-standard-library=numpy,pandas
+
+[MISCELLANEOUS]
+# List of note tags to take in consideration, separated by a comma.
+notes=FIXME,XXX,TODO
+
+[SIMILARITIES]
+# Minimum lines number of a similarity.
+min-similarity-lines=4
+
+[VARIABLES]
+# Tells whether we should check for unused import in __init__ files.
+init-import=no
