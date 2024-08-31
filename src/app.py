@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .src.router import llm_response
+from src.router import llm_response
 
 app = FastAPI()
 
