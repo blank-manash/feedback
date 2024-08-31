@@ -1,10 +1,8 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.prompts import (
-    ChatMessagePromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
+from langchain.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from src.constants import config
+from src.prompts import CUSTOMER_SERVICE
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-pro",
@@ -17,11 +15,6 @@ llm = ChatGoogleGenerativeAI(
 
 
 def get_response(text: str):
-    messages = [
-        SystemMessagePromptTemplate.from_template(
-            "You are expert Customer Behaviour Analyzer"
-        ),
-        HumanMessagePromptTemplate.from_template(text),
-    ]
-
-    return llm.invoke(messages).content
+    prompt = PromptTemplate.from_template(CUSTOMER_SERVICE)
+    chain = prompt | llm | StrOutputParser()
+    return chain.invoke({"context": text})

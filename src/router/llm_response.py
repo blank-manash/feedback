@@ -1,9 +1,11 @@
-from fastapi import APIRouter
+from typing import Annotated
+from fastapi import APIRouter, Body
 from src.service.llm_gemini import get_response
+from src.models.user_query import Ticket
 
 router = APIRouter(prefix="/model", tags=["llm"])
 
 
-@router.get("/")
-def get_llm_response(text: str):
-    return get_response(text)
+@router.post("/query")
+def get_llm_response(ticket: Ticket):
+    return get_response(ticket.query)
