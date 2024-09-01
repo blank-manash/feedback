@@ -13,6 +13,7 @@ fastapi = {extras = ["standard"], version = "^0.112.2"}
 pydantic = "^2.8.2"
 python-dotenv = "^1.0.1"
 langchain-google-genai = "^1.0.10"
+peewee = "^3.17.6"
 
 
 [build-system]
