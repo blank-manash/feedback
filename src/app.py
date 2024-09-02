@@ -5,6 +5,8 @@ app = FastAPI()
 
 app.include_router(llm_response.router)
 
-@app.get("/")
-def hello():
-    return "Hello World!"
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+
