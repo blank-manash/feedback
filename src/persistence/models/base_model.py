@@ -1,7 +1,12 @@
-from peewee import Model, PostgresqlDatabase
+from datetime import datetime
+from src.constants import get_database
 
-database = PostgresqlDatabase(':memory:')
+from peewee import Model, PostgresqlDatabase, DateTimeField
+
+database =  get_database()
+
 class BaseModel(Model):
     class Meta:
         database = database
-        database.execute_sql()
+        created_at: DateTimeField(default=datetime.utcnow)
+        modified_at: DateTimeField(default=datetime.utcnow)

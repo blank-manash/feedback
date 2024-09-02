@@ -1,9 +1,9 @@
-from peewee import UUIDField, TextField, BigIntegerField
+from peewee import TextField, BigIntegerField, AutoField
 
 from src.persistence.models.base_model import BaseModel
-from pgvector.peewee import VectorField
+
 
 class Card(BaseModel):
-    id: UUIDField()
+    id: AutoField()
     title: TextField()
     no_of_points: BigIntegerField()
