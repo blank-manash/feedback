@@ -5,4 +5,4 @@ db = get_database()
 
 db.connect()
 db.create_tables(MODEL_LIST)
-db.close
+db.close()
