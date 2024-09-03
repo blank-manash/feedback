@@ -2,14 +2,14 @@
 name = "feedbackportal"
 version = "0.1.0"
 description = ""
-package-mode = false
+# package-mode = false
 authors = ["Manash Baul <mximpaid@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 langchain = "^0.2.15"
-fastapi = {extras = ["standard"], version = "^0.112.2"}
+fastapi = { extras = ["standard"], version = "^0.112.2" }
 pydantic = "^2.8.2"
 python-dotenv = "^1.0.1"
 langchain-google-genai = "^1.0.10"
