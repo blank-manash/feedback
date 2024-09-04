@@ -1,15 +1,30 @@
 from dotenv import load_dotenv, dotenv_values
 from peewee import PostgresqlDatabase
+from dataclasses import dataclass
 
 load_dotenv()
 
 config = dotenv_values(".env")
 
-def get_database():
-    feedback_db = config.get("DATABASE")
-    host =  config.get('HOST')
-    port = config.get('PORT')
-    user = config.get('USER')
-    password = config.get('PASSWORD')
-    return PostgresqlDatabase(feedback_db, host = host, port = port, user = user, password= password)
 
+@dataclass
+class DatabaseConfig:
+    PG_DATABASE: str
+    PG_HOST: str
+    PG_PORT: str
+    PG_USERNAME: str
+    PG_PASSWORD: str
+
+    def create():
+        return DatabaseConfig(**config)
+
+
+def get_database():
+    db = DatabaseConfig.create()
+    return PostgresqlDatabase(
+        db.PG_DATABASE,
+        host=db.PG_HOST,
+        port=db.PG_PORT,
+        user=db.PG_USERNAME,
+        password=db.PG_PASSWORD,
+    )
