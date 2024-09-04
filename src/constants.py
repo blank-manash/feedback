@@ -15,8 +15,15 @@ class DatabaseConfig:
     PG_USERNAME: str
     PG_PASSWORD: str
 
+    @staticmethod
     def create():
-        return DatabaseConfig(**config)
+        return DatabaseConfig(
+            PG_DATABASE=config.get("PG_DATABASE"),
+            PG_HOST=config.get("PG_HOST"),
+            PG_PORT=config.get("PG_PORT"),
+            PG_USERNAME=config.get("PG_USERNAME"),
+            PG_PASSWORD=config.get("PG_PASSWORD")
+        )
 
 
 def get_database():
