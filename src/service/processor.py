@@ -2,6 +2,7 @@ from src.models import Ticket, SimilarityResponse, CreateResponse, ProcessRoute
 from src.vectors import get_similarity, create_embedding
 from src.persistence import Point, Card
 from src.global_utils import get_logger
+from typing import Optional
 import src.service.llm_gemini as model
 from src.constants import CREATE_THRESHOLD, MERGE_THRESHOLD
 
@@ -46,10 +47,16 @@ def merge_flow(content: str, reference: SimilarityResponse) -> ProcessRoute:
 
 def process(ticket: Ticket) -> ProcessRoute:
     query = ticket.query
-    response: SimilarityResponse = get_similarity(query)
-    result = (
-        merge_flow(query, response)
-        if response and response.score < CREATE_THRESHOLD
-        else creation_flow(query)
+    response: Optional[SimilarityResponse] = get_similarity(query)
+    if not response:
+        return creation_flow(query)
+
+    score = response.score
+
+    logger.info(
+        f"Similarity Response Score: {score}, user_point: {query}, reference_point: {response.content}"
     )
-    return result
+    if score < CREATE_THRESHOLD:
+        return creation_flow(query)
+
+    return merge_flow(query, response)
