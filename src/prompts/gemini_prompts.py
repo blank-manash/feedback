@@ -14,3 +14,12 @@ Feedback: {user_feedback}
 
 {format_instructions}
 """
+
+SANITIZE_TEXT = """\
+Given a user feedback for a product. Sanitize the user feedback.
+Remove any profane words and rephrase it in a way that is easy to understand while it is still informative.
+
+Feedback: {user_feedback}
+
+{format_instructions}
+"""
