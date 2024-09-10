@@ -19,7 +19,7 @@ llm = ChatGoogleGenerativeAI(
 )
 
 
-@retry(tries=3, backoff=2, delay=1)
+@retry(tries=3, backoff=2, delay=3)
 def create_card(point_content: str) -> CreateResponse:
     """
     Create a card from user feedback.
@@ -47,7 +47,7 @@ def create_card(point_content: str) -> CreateResponse:
     return chain.invoke({"user_feedback": point_content})
 
 
-@retry(tries=3, backoff=2, delay=1)
+@retry(tries=3, backoff=2, delay=3)
 def sanitize_text(text: str) -> str:
     """
     Sanitize the given text, removing profanity and rephrasing it to be more informative.
