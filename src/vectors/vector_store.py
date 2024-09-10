@@ -43,6 +43,8 @@ def create_embedding(query: str) -> list[float]:
 def get_similarity(query: str) -> Optional[SimilarityResponse]:
     store = get_vector_store()
     response = store.similarity_search_with_relevance_scores(query)
+    if not response:
+        return None
     doc, score = response[0]
     return SimilarityResponse(
         id=doc.metadata["id"], content=doc.page_content, score=round(score, 2)

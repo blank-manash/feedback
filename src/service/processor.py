@@ -1,7 +1,7 @@
 from src.models import Ticket, SimilarityResponse, CreateResponse, ProcessRoute
 from src.vectors import get_similarity, create_embedding
 from src.persistence import Point, Card
-from global_utils import get_logger
+from src.global_utils import get_logger
 import src.service.llm_gemini as model
 from src.constants import CREATE_THRESHOLD, MERGE_THRESHOLD
 

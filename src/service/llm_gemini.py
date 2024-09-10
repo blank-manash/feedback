@@ -1,11 +1,10 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from src.constants import config
 from src.models import CreateResponse, TextResponse
 from src.prompts import CUSTOMER_SERVICE, CREATE_FLOW, SANITIZE_TEXT
 from langchain.output_parsers import PydanticOutputParser
-from global_utils import get_logger
+from src.global_utils import get_logger
 from retry import retry
 
 logger = get_logger(__name__)
@@ -49,7 +48,7 @@ def create_card(point_content: str) -> CreateResponse:
 
 
 @retry(tries=3, backoff=2, delay=1)
-def sanitize_text(text: str):
+def sanitize_text(text: str) -> str:
     """
     Sanitize the given text, removing profanity and rephrasing it to be more informative.
 
@@ -69,4 +68,5 @@ def sanitize_text(text: str):
     )
     chain = prompt | llm | parser
     logger.info("Calling LLM to sanitize text")
-    return chain.invoke({"user_feedback": text})
+    response: TextResponse = chain.invoke({"user_feedback": text})
+    return response.text

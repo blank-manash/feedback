@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from src.models.user_query import Ticket
 from src.service import processor
-from global_utils import get_logger
+from src.global_utils import get_logger
 
 router = APIRouter(prefix="/api/v1", tags=["application"])
 
