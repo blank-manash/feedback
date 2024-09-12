@@ -4,3 +4,22 @@ Do not format your response in anything (like markdown or org) Use Plain text.
 
 {context}
 """
+
+CREATE_FLOW = """\
+Given a user feedback for a product. Create a title, and sanitize the user feedback.
+Multiple similar user feedbacks (based on cosine similarity) will be grouped under the same title in future.
+Try to make title brief and easy to understand.
+
+Feedback: {user_feedback}
+
+{format_instructions}
+"""
+
+SANITIZE_TEXT = """\
+Given a user feedback for a product. Sanitize the user feedback.
+Remove any profane words and rephrase it in a way that is easy to understand while it is still informative.
+
+Feedback: {user_feedback}
+
+{format_instructions}
+"""
